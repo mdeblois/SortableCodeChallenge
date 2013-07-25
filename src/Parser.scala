@@ -154,11 +154,6 @@ object Parser {
 
               // check to make sure a model was found before checking it against the matched model
               if (compareNode.isDefined) {
-
-                if (modelNode.compareValue.equals("60d") && cleanListingTitle.contains("7d")) {
-                  Logger.log("We're here")
-                }
-
                 if (matchedNode.isEmpty) {
                   // if matched model has not been set yet, set it with the compareNode
                   matchedNode = compareNode
@@ -229,8 +224,9 @@ object Parser {
     for (subStr <- parsedTitle) {
       if (subStr.length() > modelNode.compareValue.length()) {
         // if the sub string in title is greater than model, then
-        // check if family and/or can be prepended to the string
-        // if still not equal, then it's definitely not this one, so just move on
+        // check if manufacturer and/or family can be prepended to the string
+        // if still not equal, then it's definitely not this one, so just 
+        // move on to the next sub string
         var familyList: ListBuffer[String] = ListBuffer()
         var manufacturer:String = ""
         if (modelNode.children.isDefined) {
@@ -300,7 +296,6 @@ object Parser {
     val resultsWriter = new PrintWriter(new File(filename))
 
     for (product <- results.keys) {
-
       var listingsList = ListBuffer[JSONObject]()
       for (listing <- results(product)) {
         var listingMap = Map(("title", listing.title), ("manufacturer", listing.manufacturer), ("currency", listing.currency), ("price", listing.price))
