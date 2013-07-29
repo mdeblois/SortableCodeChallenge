@@ -4,9 +4,10 @@ import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.ArrayBuffer
 import java.io._
 import scala.util.control.Breaks._
+import EStatusCode._
 
 object Parser {
-  def ParseProducts(filename: String): List[Node] = {
+  def ParseProducts(filename: String): (EStatusCode, List[Node]) = {
     // manufacturer list to create the tree
     var productTree: ListBuffer[Node] = ListBuffer[Node]()
 
@@ -89,13 +90,13 @@ object Parser {
 
     }
 
-    productTree.toList
+    (EStatusCode.Success, productTree.toList)
   }
 
   /// This method will take the listings, read one line at a time, 
   /// and compare the listing to the list of products and create a list
   /// of results to return
-  def ParseListings(filename: String, productTree: List[Node]): Map[String, ListBuffer[Listing]] = {
+  def ParseListings(filename: String, productTree: List[Node]): (EStatusCode, Map[String, ListBuffer[Listing]]) = {
     // the result is a map of the product name to the listing
     var results = scala.collection.mutable.Map[String, ListBuffer[Listing]]();
 
@@ -206,7 +207,7 @@ object Parser {
       }
     }
 
-    results.toMap
+    (EStatusCode.Success, results.toMap)
   }
 
   /// This method will return if the model name 

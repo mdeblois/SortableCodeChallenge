@@ -9,15 +9,25 @@ object CodeChallenge {
 
     // read and parse the products
     Console.println("parsing products")
-    val products = Parser.ParseProducts(productsFilename)
-
+    val (productStatusCode, products) = Parser.ParseProducts(productsFilename)
+    if(productStatusCode != EStatusCode.Success){
+      Console.println("Error Parsing Products:"+EStatusCode.toString())
+      exit(-1)
+    }
+    
     // read and parse the listings
     Console.println("parsing listings")
-    val results = Parser.ParseListings(listingsFilename, products)
+    val (listingsStatusCode, results) = Parser.ParseListings(listingsFilename, products)
 
-    // write the results
+    // write the results if successful
+    if(listingsStatusCode != EStatusCode.Success){
+      Console.println("Error Parsing Listings:" + EStatusCode.toString())
+      exit(-1)
+    }
+    
     Console.println("writing results")
     Parser.WriteResultsToFile(resultsFilename, results)
+    
   }
 
 }

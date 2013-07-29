@@ -1572,7 +1572,6 @@ Manufacturers found for Sunset Electronics: 0
 There were no models found for this listing: {"title":"Sony Alpha DSLR-A350kit 14.2MP Digital SLR Camera with Super SteadyShot Image Stabilization & 75-300mm f/4.5-5.6 Zoom Lens","manufacturer":"Sony","currency":"USD","price":"949.95"}
 There were no models found for this listing: {"title":"Sony Alpha DSLR-A900 24.6MP SLR (Camera Body) + Sony 28-75mm f/2.8 Smooth Autofocus Motor (SAM) Lens + 75-300mm f/4.5-5.6 AF D Autofocus Lens + Two (2) Transcend 32GB CF + Sony Case + Professional Photographer Shooters Package","manufacturer":"Sony","currency":"USD","price":"3994.97"}
 There were no models found for this listing: {"title":"Nikon D700 12.1MP Digital SLR Camera with 18-135mm f/3.5-5.6G ED-IF AF-S DX Zoom-Nikkor Lens","manufacturer":"Nikon","currency":"USD","price":"3995.00"}
-We're here
 There were no models found for this listing: {"title":"Canon EF 70-300mm f/4-5.6 IS USM AF Lens + Canon 2400 DSLR Gadget Bag Case + Accessory Kit for Digital Rebel XT, XTi, XS, XSi, T1i, T2i, EOS 30D, 40D, 5D, 7D, 50D & 60D Digital SLR Cameras","manufacturer":"Canon","currency":"USD","price":"599.95"}
 There were no models found for this listing: {"title":"Nikon D40x 10.2MP Digital SLR Camera with 18-135mm f/3.5-5.6G ED-IF AF-S DX Zoom-Nikkor Lens","manufacturer":"Nikon","currency":"USD","price":"449.00"}
 There were no models found for this listing: {"title":"Nikon D40x 10.2MP Digital SLR Camera with 18-135mm f/3.5-5.6G ED-IF AF-S DX Zoom-Nikkor Lens","manufacturer":"Nikon","currency":"USD","price":"599.99"}
