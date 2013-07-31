@@ -27,8 +27,8 @@ object Parser {
       // clean manufacturer string and verify if it already exists in the list
       val manufacturerCompareValue = CleanString(product.manufacturer)
       var manufacturerNode: Node = {
-        if (productTree.exists { n => n.compareValue.equals(manufacturerCompareValue) }) {
-          productTree.find { n => n.compareValue.equals(manufacturerCompareValue) }.get
+        if (productTree.exists { _.compareValue.equals(manufacturerCompareValue) }) {
+          productTree.find { _.compareValue.equals(manufacturerCompareValue) }.get
         } else {
           // return a new node and add it to the tree
           var newNode = new Node(product.manufacturer, manufacturerCompareValue, None, None)
@@ -40,11 +40,11 @@ object Parser {
       // now we have the manufacturer node, so we need to check if the model 
       // node already exists by using the 'cleaned' model string
       val modelCompareValue = CleanString(product.model)
-      if (manufacturerNode.children.isDefined && manufacturerNode.children.get.exists { n => n.compareValue.equals(modelCompareValue) }) {
+      if (manufacturerNode.children.isDefined && manufacturerNode.children.get.exists { _.compareValue.equals(modelCompareValue) }) {
         // model already exists, so now we need to add another level of children 
         // for families, but only if both models have a family defined
         // so first get current node and verify with current product
-        var modelNode = manufacturerNode.children.get.find { n => n.compareValue.equals(modelCompareValue) }.get
+        var modelNode = manufacturerNode.children.get.find { _.compareValue.equals(modelCompareValue) }.get
         if (!modelNode.product.get.family.equals("") && !product.family.equals("")) {
           // now check if model node already has family children
           if (!modelNode.children.isDefined) {
@@ -127,9 +127,8 @@ object Parser {
           val parsedListingTitle = ParseString(listing.title)
           // go through the list of models of this manufacturer and check if model matches
           var matchedNode: Option[Node] = None
-
           breakable {
-            for (modelNode <- manufacturers(0).children.get.filter(n => DoesModelMatch(cleanListingTitle, parsedListingTitle, n))) {
+            for (modelNode <- manufacturers(0).children.get.filter(DoesModelMatch(cleanListingTitle, parsedListingTitle, _))) {
 
               // the models in this body matched listing
               // check to see if there are multiple families for this model
@@ -137,7 +136,7 @@ object Parser {
                 if (modelNode.children.isDefined) {
                   // there are multiple families so need to check if a family is specified
                   // in the listing title
-                  var matchedFamilyNodes = modelNode.children.get.filter(f => cleanListingTitle.contains(f.compareValue))
+                  var matchedFamilyNodes = modelNode.children.get.filter(n => cleanListingTitle.contains(n.compareValue))
                   if (matchedFamilyNodes.length == 1) {
                     // there's only one child so get it and set the compare
                     val familyNode = matchedFamilyNodes(0)
@@ -174,7 +173,7 @@ object Parser {
                     }
                   } else {
                     // the indices are too far apart and therefore must represent a different model
-                    // if there 2 models in one listing, it's not good so drop the current listing
+                    // if there are 2 models in one listing, it's not good so drop the current listing
                     // and go to the next
                     matchedNode = None
                     break
@@ -199,7 +198,7 @@ object Parser {
           }
 
         } else {
-          // there were none or multiple manufacturers found
+          // there were no or multiple manufacturers found
           // so just log it
           Logger.log("Manufacturers found for " + listing.manufacturer + ": " + manufacturers.length)
         }
